@@ -17,7 +17,7 @@ export interface Projet extends BaseItem {
     creePar: string
 }
 
-interface Tache extends BaseItem {
+export interface Tache extends BaseItem {
     type: "tache"
     projetId: string
     priorite: string
@@ -54,9 +54,9 @@ export async function getItem(id: string): Promise<Item> {
 
 export async function getTachesByProject(projectId: string): Promise<Tache[]> {
     const { resources } = await container.items
-        .query(`SELECT * FROM c WHERE c.projetId = "${projectId}"`)
+        .query(`SELECT * FROM c WHERE c.type = "tache" AND c.projetId = "${projectId}"`)
         .fetchAll()
-    return resources
+    return resources as Tache[]
 }
 
 export async function createItem(dto: CreateItemDTO): Promise<Item> {
