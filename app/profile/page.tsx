@@ -2,11 +2,12 @@ import { auth } from "@/auth";
 import Image from "next/image";
 
 import LogoutButton from "@/components/LogoutButton";
+import Link from "next/link";
 
 export default async function Profile() {
     const session = await auth();
 
-    console.log(session);
+    // console.log(session);
 
     if (!session || !session.user) {
         return (
@@ -18,8 +19,15 @@ export default async function Profile() {
 
     return (
 
-        <div className="flex flex-col items-center justify-center min-h-[90vh]">
-            <div className="p-5 shadow-2xl rounded-md min-w-[30%] max-w-[50%] flex gap-5 flex-col items-center">
+        <div className="relative flex flex-col items-center justify-center min-h-[90vh] gap-10">
+            <Link
+                href="/dashboard"
+                className="absolute top-15 left-15 text-sm text-blue-600 hover:underline"
+            >
+                ← Retour au dashboard
+            </Link>
+
+            <div className="p-10 rounded-md bg-[#3d4b60] border-[4px] rounded-[4px] min-w-[30%] max-w-[50%] flex gap-5 flex-col items-center">
                 {session?.user?.image ? (
                     <Image
                         width={100}
@@ -34,11 +42,12 @@ export default async function Profile() {
                         {session?.user?.name?.split(" ")[1]?.charAt(0).toUpperCase()}
                     </div>
                 )}
-                <div className="text-center text-sm">
+                <div className="text-center font-bold">
                     <p>{session?.user?.name}</p>
                     <p>{session?.user?.email}</p>
                 </div>
             </div>
+
             <LogoutButton />
         </div>
     );
