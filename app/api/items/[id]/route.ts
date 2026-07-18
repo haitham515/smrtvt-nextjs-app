@@ -65,7 +65,7 @@ export async function DELETE(
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    console.log("params de route.ts : ", params)
+    // console.log("params de route.ts : ", params)
     const { id } = await params
 
     if (!id) {
