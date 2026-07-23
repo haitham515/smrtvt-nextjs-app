@@ -6,6 +6,8 @@ import { Projet } from "@/lib/items"
 import UpdateDeleteButton from "./UpdateDeleteButton"
 import ConfirmDeleteModal from "./ConfirmDeleteModal"
 
+import toast from "react-hot-toast"
+
 export default function ProjectCard({ project }: { project: Projet }) {
     const router = useRouter()
     const [showConfirm, setShowConfirm] = useState(false)
@@ -22,9 +24,11 @@ export default function ProjectCard({ project }: { project: Projet }) {
         setShowConfirm(false)
 
         if (res.ok) {
+            toast.success("Projet supprimé avec succès.")
             router.refresh()
         } else {
-            alert("Erreur lors de la suppression.")
+            // alert("Erreur lors de la suppression.")
+            toast.error("Erreur lors de la suppression.")
         }
     }
 

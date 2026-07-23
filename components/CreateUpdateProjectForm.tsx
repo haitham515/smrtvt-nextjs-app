@@ -4,6 +4,8 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Projet } from "@/lib/items"
 
+import toast from "react-hot-toast"
+
 interface CreateUpdateProjectFormProps {
     initialData?: Projet  // optionnel → absent = création, présent = édition
 }
@@ -37,7 +39,8 @@ export default function CreateUpdateProjectForm({ initialData }: CreateUpdatePro
 
         // validation côté client
         if (!form.titre || !form.description || !form.dateDebut || !form.dureeSemaines || !form.creePar) {
-            setError("Tous les champs sont obligatoires.")
+            // setError("Tous les champs sont obligatoires.")
+            toast.error("Tous les champs sont obligatoires.")
             setLoading(false)
             return
         }
@@ -60,13 +63,15 @@ export default function CreateUpdateProjectForm({ initialData }: CreateUpdatePro
 
         if (!res.ok) {
             const data = await res.json()
-            setError(data.error ?? "Erreur lors de la création.")
+            // setError(data.error ?? "Erreur lors de la création.")
+            toast.error(data.error ?? "Erreur lors de la création.")
             // data.error ?? "Erreur lors de la création." is equivalent to [!data.error ? "Erreur lors de la création" : data.error]
             console.log("erreur lors de la création dans CreateProjectForm : ", error)
             return
         }
 
-        alert(isEdit ? "Projet modifié avec succes." : "Projet créé avec succes.")
+        // alert(isEdit ? "Projet modifié avec succes." : "Projet créé avec succes.")
+        toast.success(isEdit ? "Projet modifié avec succes." : "Projet créé avec succes.")
         router.push("/dashboard")
         router.refresh()  // force le re-fetch des projets sinon le nouveau projet n'apparaîtrait pas immédiatement dans le dashboard
     }

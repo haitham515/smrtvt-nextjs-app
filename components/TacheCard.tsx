@@ -6,6 +6,8 @@ import { Tache } from "@/lib/items"
 import UpdateDeleteButton from "./UpdateDeleteButton"
 import ConfirmDeleteModal from "./ConfirmDeleteModal"
 
+import toast from "react-hot-toast"
+
 const prioriteColors: Record<string, string> = {
     "Haute": "bg-red-100 text-red-700",
     "Moyenne": "bg-yellow-100 text-yellow-700",
@@ -30,9 +32,13 @@ export default function TacheCard({ tache }: { tache: Tache }) {
         setShowConfirm(false)
         if (res.ok) {
             router.refresh()
-            alert("Tache supprimée avec succès.")
+            // alert("Tache supprimée avec succès.")
+            toast.success("Tache supprimée avec succès.")
         }
-        else alert("Erreur lors de la suppression.")
+        else {
+            // alert("Erreur lors de la suppression.")
+            toast.error("Erreur lors de la suppression.")
+        }
     }
 
     const handleUpdate = () => {

@@ -1,4 +1,4 @@
-// app/dashboard/page.tsx
+import { auth } from "@/auth"
 import { getAllProjects } from "@/lib/items"
 
 import Link from "next/link"
@@ -6,11 +6,16 @@ import Link from "next/link"
 import ProjectCard from "@/components/ProjectCard"
 import ProfileButton from "@/components/ProfileButton"
 
+import WelcomeToast from "@/components/WelcomeToast"
+
 export default async function Dashboard() {
+    const session = await auth()
     const projects = await getAllProjects()
 
     return (
         <div className="p-8 max-w-5xl mx-auto">
+
+            <WelcomeToast name={session?.user?.name ?? "user"}/>
 
             {/* Header */}
             <div className="flex items-center justify-between mb-8">
