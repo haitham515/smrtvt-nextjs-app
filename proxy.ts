@@ -29,9 +29,9 @@ export default proxy((req) =>{
         // Le deuxième paramètre (request.url) sert de base pour transformer le chemin relatif "/login" en URL absolue.
     }
 
-    if(isAuthPageRoute && isLoggedIn) {
-        return NextResponse.redirect(new URL("/dashboard", req.url))
-    }
+    // if(isAuthPageRoute && isLoggedIn) {
+    //     return NextResponse.redirect(new URL("/dashboard", req.url))
+    // }
 
     return NextResponse.next()
 
