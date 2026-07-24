@@ -5,7 +5,11 @@ import { toast } from "react-hot-toast"
 
 export default function WelcomeToast({ name }: { name: string }) {
     useEffect(() => {
-        toast.success(`Bienvenue ${name} !`)
-    }, [])
+        const hasBeenShown = localStorage.getItem("WelcomeToastShown")
+        if (!hasBeenShown) {
+            toast.success(`Bienvenue ${name} !`);
+            localStorage.setItem("WelcomeToastShown", "true");
+        }
+    }, [name])
     return null
 }
