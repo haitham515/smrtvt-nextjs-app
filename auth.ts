@@ -1,6 +1,6 @@
 import NextAuth from "next-auth"
 import MicrosoftEntraID from "next-auth/providers/microsoft-entra-id"
- 
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
     MicrosoftEntraID({
@@ -9,7 +9,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       issuer: process.env.AUTH_MICROSOFT_ENTRA_ID_ISSUER,
     }),
   ],
-  callbacks:{
+  callbacks: {
     async redirect({ url, baseUrl }) {
       return `${baseUrl}/dashboard`
     }
