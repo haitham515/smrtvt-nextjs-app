@@ -9,7 +9,7 @@ function LoginButton() {
     const handleLogin = async () => {
         setIsLoading(true);
         localStorage.setItem("isSignedInClicked", "true");
-        await signIn("microsoft-entra-id");
+        await signIn("microsoft-entra-id", { redirectTo: "/dashboard" });
         localStorage.setItem("isSignedInFinally", "true");
         setIsLoading(false);
     };
