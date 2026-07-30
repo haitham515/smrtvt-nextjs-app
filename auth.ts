@@ -2,7 +2,7 @@ import NextAuth from "next-auth"
 import MicrosoftEntraID from "next-auth/providers/microsoft-entra-id"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  debug: true,
+  // debug: true,
   providers: [
     MicrosoftEntraID({
       clientId: process.env.AUTH_MICROSOFT_ENTRA_ID_ID,
@@ -10,11 +10,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       issuer: process.env.AUTH_MICROSOFT_ENTRA_ID_ISSUER,
     }),
   ],
-  callbacks: {
-    async redirect({ url, baseUrl }) {
-      return `${baseUrl}/dashboard`
-    }
-  }
+
+
 })
 
 // name: Azure Static Web Apps CI/CD
