@@ -8,7 +8,9 @@ function LoginButton() {
 
     const handleLogin = async () => {
         setIsLoading(true);
+        localStorage.setItem("isSignedInClicked", "true");
         await signIn("microsoft-entra-id");
+        localStorage.setItem("isSignedInFinally", "true");
         setIsLoading(false);
     };
 
