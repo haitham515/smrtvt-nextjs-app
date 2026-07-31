@@ -56,7 +56,7 @@ export default function TacheCard({ tache }: { tache: Tache }) {
                 />
             )}
 
-            <div className="border border-gray-200 rounded-lg p-5 shadow-sm hover:shadow-md transition">
+            <div className="flex flex-col border border-gray-200 rounded-lg p-5 shadow-sm hover:shadow-md transition">
                 <div className="flex items-center justify-between mb-3">
                     <h3 className="text-base font-semibold text-gray-800">{tache.titre}</h3>
                     <span className={`text-xs px-2 py-1 rounded-full font-medium ${prioriteColors[tache.priorite] ?? "bg-gray-100 text-gray-600"
@@ -75,7 +75,7 @@ export default function TacheCard({ tache }: { tache: Tache }) {
                     </p>
                     <p><span className="font-medium">Date limite :</span> {tache.dateLimite}</p>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex justify-center gap-2 mt-auto">
                     <UpdateDeleteButton text="Modifier" onClick={handleUpdate} variant="update" />
                     <UpdateDeleteButton text="Supprimer" onClick={() => setShowConfirm(true)} variant="delete" />
                 </div>
