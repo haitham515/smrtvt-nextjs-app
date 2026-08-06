@@ -17,7 +17,7 @@ function LoginButton() {
     return (
         <button
             onClick={() => handleLogin()}
-            className="w-full bg-blue-800 text-white my-5 p-3 rounded-md hover:opacity-80 disabled:opacity-50 cursor-pointer"
+            className="w-full bg-red-800 text-white my-5 p-3 rounded-md hover:opacity-80 disabled:opacity-50 cursor-pointer"
             disabled={isLoading}
         >
             {isLoading ? "Signing in..." : "Login With Microsoft"}
