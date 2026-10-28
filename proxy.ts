@@ -5,9 +5,9 @@ const protectedRoutes = ["/dashboard", "/profile"]
 const authPageRoutes = ["/login"]
 const apiAuthPrefix = "/api/auth/"
 
-export default proxy((req) =>{
+export default proxy((req) => {
     // console.log("votre req est : ", req)
-    const {nextUrl} = req
+    const { nextUrl } = req
     // console.log("les hidden elements de req sont : ");
     // console.dir(req, { showHidden: true, depth: 2 });
     // console.log("votre nextUrl est : ", nextUrl)
@@ -20,7 +20,7 @@ export default proxy((req) =>{
     const isProtectedRoute = protectedRoutes.includes(path)
     const isAuthPageRoute = authPageRoutes.includes(path)
 
-    if(isApiAuthRoute) {
+    if (isApiAuthRoute) {
         return NextResponse.next()
     }
 
